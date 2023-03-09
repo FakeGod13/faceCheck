@@ -34,8 +34,10 @@ def appearance(file_path, token):
     return people
 
 
-img = './img'
-appearance(img, token)
-path = './img'
-# 储存照片的文件夹地址
-img_list = os.listdir(path)
+if __name__ == "__main__":
+
+    img = './img'
+    appearance(img, token)
+    path = './img'
+    # 储存照片的文件夹地址
+    img_list = os.listdir(path)
