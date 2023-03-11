@@ -1,7 +1,6 @@
 import tkinter as tk
 from camera import tkImage, getImagePath, cameraShutter
 from faceCheck import imageToBase64, faceCheck
-from threading import Thread
 
 """ root窗口 """
 
@@ -9,13 +8,11 @@ from threading import Thread
 window_width = 640
 window_height = 480
 
-
 # 画布参数
 image_width = int(window_width*0.6)
 image_height = int(window_height*0.6)
 image_pos_x = int(window_width*0.2)
 image_pos_y = int(window_height*0.1)
-
 
 """ 按钮 """
 
@@ -29,10 +26,7 @@ button_pos_y = 350
 label_pos_x = 250
 label_pos_y = 350 + 75
 
-
-
 # 回调函数
-
 def callback_saveImage():
     path = cameraShutter()
     # 测试faceCheck
@@ -65,20 +59,27 @@ def updater():
         sleep(1)
         callback_saveImage()
 
+"""
+原计划用并行来使得刷新器和计时器可以同时运行。
+然而个人能力有限，此部分未能实现。
+
 # 线程
+from threading import Thread
+
 t1 = Thread(target=timer, args=('第1个线程 定时器', 1))
 t2 = Thread(target=updater, args=('第2个线程 视频更新器', 2))
 
+"""
 
 if __name__ == "__main__":
 
-    """根窗口"""
+    """ 根窗口 """
 
     root = tk.Tk()
     root.wm_title("face recognition")
     root.geometry(str(window_width)+'x'+str(window_height))
 
-    """摄像头"""
+    """ 摄像头 """
 
     # 画布声明
     canvas = tk.Canvas(root, bg='white', width=image_width,
